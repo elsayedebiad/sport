@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "901628672455",
+    "project_id": "scoreapp-9f137",
+    "storage_bucket": "scoreapp-9f137.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901628672455:android:b79f3f9fff95e77146c1e2",
+        "android_client_info": {
+          "package_name": "com.example.sports_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5wOHLSx0C1IqZfSmaM0CEsoJ5gMzQGKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
