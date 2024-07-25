@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login/screens/home_page.dart';
@@ -5,8 +7,6 @@ import 'package:login/screens/home_page.dart';
 import 'Components/color.dart';
 import 'Components/onboarding_data.dart';
 import 'screens/home.dart';
-import 'screens/login.dart';
-import 'screens/signup.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

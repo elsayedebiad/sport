@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import '../data/models/topscorers_model.dart';
 import '../data/repository/topscorers_repo.dart';

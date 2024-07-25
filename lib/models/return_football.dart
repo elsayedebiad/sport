@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/Components/cpuntrry.dart';
 import 'package:login/models/country_data_model.dart';
 
-import 'football_detels.dart';
 
 class ReturnFootball extends StatelessWidget {
   const ReturnFootball({super.key, required this.countrydata});

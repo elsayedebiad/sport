@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
+// ignore_for_file: prefer_const_constructors, avoid_print
 import '/services/API.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,6 +22,14 @@ void main() async {
   runApp(
     ScoreApp(),
   );
+  // runApp(
+  //     MultiProvider(
+  //     providers: [
+  //       ChangeNotifierProvider(create: (_) => LocationProvider()),
+  //     ],
+  //     child: ScoreApp(),
+  //   ),
+  // );
 }
 
 class ScoreApp extends StatefulWidget {

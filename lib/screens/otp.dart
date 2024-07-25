@@ -1,11 +1,11 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, sized_box_for_whitespace
+
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/screens/home_page.dart';
 
-void main() {
-  runApp(RandomApp());
-}
 
 class RandomApp extends StatefulWidget {
   RandomApp({super.key});
@@ -23,6 +23,8 @@ class _RandomAppState extends State<RandomApp> {
 
   @override
   Widget build(BuildContext context) {
+  final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       backgroundColor: Color(0xff181A20),
       body: SingleChildScrollView(
@@ -55,23 +57,53 @@ class _RandomAppState extends State<RandomApp> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 160,
+              Container(
+                margin: EdgeInsets.only(top: 50, bottom: 50, left: 20, right: 20),
+                padding: EdgeInsets.all(21),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.pink),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color(0xff1F1F1F),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Verification your email:",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      user.email!,
+                      style: TextStyle(
+                        color: Colors.pink,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Container(
-                padding:
-                    EdgeInsets.only(left: 50, right: 50, top: 15, bottom: 15),
+                padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color.fromARGB(255, 164, 174, 204),
-                    ),
-                    borderRadius: BorderRadius.circular(12)),
+                  border: Border.all(
+                    color: Color.fromARGB(255, 164, 174, 204),
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color(0xff1F1F1F),
+                ),
                 child: Text(
                   randomValues.isNotEmpty ? randomValues.join(' - ') : '',
                   style: TextStyle(
-                      fontSize: 25,
-                      color: const Color.fromARGB(66, 255, 255, 255),
-                      fontFamily: 'Poppins'),
+                    fontSize: 25,
+                    color: Colors.white,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
               Container(
@@ -90,13 +122,14 @@ class _RandomAppState extends State<RandomApp> {
                   },
                   child: Text(
                     "Create Code",
-                    style:
-                        TextStyle(color: Colors.white, fontFamily: 'poppins'),
+                    style: TextStyle(color: Colors.white, fontFamily: 'poppins'),
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 115, 56, 69),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12))),
+                    backgroundColor: Color.fromARGB(255, 115, 56, 69),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 60),
@@ -106,15 +139,15 @@ class _RandomAppState extends State<RandomApp> {
                   return Container(
                     width: 40,
                     child: TextField(
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                      style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                       controller: controllers[index],
                       focusNode: focusNodes[index],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromARGB(255, 201, 169, 176)),
+                            color: Color.fromARGB(255, 201, 169, 176),
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xffF63D67)),
@@ -150,21 +183,23 @@ class _RandomAppState extends State<RandomApp> {
                   },
                   child: Text(
                     "Check",
-                    style:
-                        TextStyle(color: Colors.white, fontFamily: 'poppins'),
+                    style: TextStyle(color: Colors.white, fontFamily: 'poppins'),
                   ),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffF63D67),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12))),
+                    backgroundColor: Color(0xffF63D67),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
               Text(
                 result,
                 style: TextStyle(
-                    fontSize: 25,
-                    color: result == "Success" ? Colors.green : Colors.red),
+                  fontSize: 25,
+                  color: result == "Success" ? Colors.green : Colors.red,
+                ),
               ),
             ],
           ),
@@ -185,17 +220,15 @@ class _RandomAppState extends State<RandomApp> {
   String checkInput(
       List<TextEditingController> controllers, List<int> randomValues) {
     for (int i = 0; i < controllers.length; i++) {
-      if (int.tryParse(controllers[i].text) != randomValues[i] &&
-          controllers[i].text != null) {
-        return "Please try Again";
-      } else {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ));
+      if (int.tryParse(controllers[i].text) != randomValues[i]) {
+        return "The code is not true";
       }
     }
-    return "Error";
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
+    return "Success";
   }
 }

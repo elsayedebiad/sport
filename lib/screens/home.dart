@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_import, avoid_unnecessary_containers, use_full_hex_values_for_flutter_colors
+// ignore_for_file: prefer_const_constructors, unnecessary_import, avoid_unnecessary_containers, use_full_hex_values_for_flutter_colors, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login/screens/home_page.dart';
 import 'package:login/screens/login.dart';
+import 'package:login/screens/otp.dart';
 import 'package:login/screens/signup.dart';
 
 class Home extends StatefulWidget {
@@ -50,7 +51,7 @@ class _HomeState extends State<Home> {
     // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => RandomApp()));
   }
 
   @override

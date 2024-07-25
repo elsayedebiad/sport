@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:login/widgets/location_provider.dart';
+import 'package:provider/provider.dart';
 import 'leagues_screen.dart';
-import '../widgets/location_provider.dart';
 import '../data/repository/country_repo.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -79,13 +82,13 @@ class _CountryScreenState extends State<CountryScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // if (locationProvider.currentPosition != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              // child: Text(
-              //   'Current Location: ${locationProvider.currentPosition!.latitude}, ${locationProvider.currentPosition!.longitude}\nCountry: ${locationProvider.currentCountryName ?? "Unknown"}',
-              //   style: const TextStyle(fontSize: 16),
-              // ),
-            ),
+          //   Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Text(
+          //       'Current Location: ${locationProvider.currentPosition!.latitude}, ${locationProvider.currentPosition!.longitude}\nCountry: ${locationProvider.currentCountryName ?? "Unknown"}',
+          //       style: const TextStyle(fontSize: 16),
+          //     ),
+          //   ),
           Expanded(
             child: countries.isEmpty
                 ? const Center(child: CircularProgressIndicator())
@@ -125,7 +128,7 @@ class _CountryScreenState extends State<CountryScreen> {
                           child: Card(
                             elevation: 4,
                             shape: RoundedRectangleBorder(
-                              // borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15),
                               // side: BorderSide(
                               //   color: locationProvider.currentPosition != null && isCountryCurrentLocation(country)
                               //       ? Colors.green // Special color for current location

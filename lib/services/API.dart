@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:search_page/search_page.dart';
+// ignore_for_file: non_constant_identifier_names, unused_local_variable
 
+import 'package:dio/dio.dart';
 import '../models/country_data_model.dart';
 
 class Service {

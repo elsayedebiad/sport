@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:login/screens/playeres.dart';
 import '../data/repository/teams_repo.dart';
 import '../data/models/teams_model.dart';
 import 'topscorers_screen.dart';
@@ -119,32 +122,37 @@ class _TeamsScreenState extends State<TeamsScreen> with SingleTickerProviderStat
                     final team = filteredTeams[index];
                     final teamName = team.teamName ?? 'Unknown';
                     final logoUrl = team.teamLogo ?? '';
-
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: const BorderSide(
-                            color: Colors.grey,
-                            width: 2,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PlayersScreen(teamId: team.teamKey.toString()),
                           ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            _isValidUrl(logoUrl)
-                                ? Image.network(
-                                    logoUrl,
-                                    width: 50,
-                                    height: 50,
-                                    errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
-                                  )
-                                : Icon(Icons.error),
-                            SizedBox(height: 8),
-                            Text(teamName),
-                          ],
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _isValidUrl(logoUrl)
+                                  ? Image.network(
+                                      logoUrl,
+                                      width: 50,
+                                      height: 50,
+                                      errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
+                                    )
+                                  : const Icon(Icons.error),
+                              const SizedBox(height: 8),
+                              Text(teamName),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -155,4 +163,3 @@ class _TeamsScreenState extends State<TeamsScreen> with SingleTickerProviderStat
     );
   }
 }
-

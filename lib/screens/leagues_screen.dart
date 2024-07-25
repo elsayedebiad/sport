@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:login/screens/teams_screen.dart';
 import '../data/models/get_leagues_model.dart';
